@@ -1,0 +1,19 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.outer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.custom-nav {
+  width: 25%;
+}
+
+.main-container {
+  width: 75%;
+}
