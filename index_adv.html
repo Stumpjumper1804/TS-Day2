@@ -15,7 +15,7 @@
   <body>
     <header></header>
     <main>
-      <div class="outer-container border border-dark border-3 mt-4">
+      <div class="outer-container border border-dark border-3 my-4">
         <div class="custom-nav border border-primary border-3">
           <ul class="nav flex-column">
             <li class="nav-item">
@@ -32,15 +32,21 @@
             </li>
           </ul>
         </div>
-
+        <!--container for rendering the catalog-->
         <div class="main-container border border-success border-3">
           <h2>Cars in our shop:</h2>
           <div id="car-list" class="row row-cols-1 row-cols-sm-2 w-100 mx-auto">
             <!--render vehicles-->
           </div>
+          <!--modal container-->
+          <div id="modal-container" class="border border-warning border-2">
+            <!--render modal content-->
+          </div>
+          <!--end of modal container-->
         </div>
       </div>
     </main>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

@@ -89,7 +89,7 @@ class Truck extends Vehicle {
 
 let catalog: Array<{}> = [];
 
-let kawasaki: {} = new Motorbike(
+let kawasaki = new Motorbike(
   "Motorbike",
   23000,
   "gasoline",
@@ -102,7 +102,7 @@ let kawasaki: {} = new Motorbike(
 );
 catalog.push(kawasaki);
 
-let ducati: {} = new Motorbike(
+let ducati = new Motorbike(
   "Motorbike",
   41000,
   "gasoline",
@@ -116,21 +116,21 @@ let ducati: {} = new Motorbike(
 
 catalog.push(ducati);
 
-let honda: {} = new Motorbike(
+let honda = new Motorbike(
   "Motorbike",
   50000,
   "gasoline",
   2021,
   17000,
   "Honda",
-  "TRansalp",
+  "Transalp",
   true,
   1000
 );
 
 catalog.push(honda);
 
-let rangeRover: {} = new Truck(
+let rangeRover = new Truck(
   "Truck",
   67000,
   "Diesel",
@@ -145,7 +145,7 @@ let rangeRover: {} = new Truck(
 
 catalog.push(rangeRover);
 
-let mercedes: {} = new Truck(
+let mercedes = new Truck(
   "Truck",
   34000,
   "Diesel",
@@ -160,7 +160,7 @@ let mercedes: {} = new Truck(
 
 catalog.push(mercedes);
 
-let mitsu: {} = new Truck(
+let mitsu = new Truck(
   "Truck",
   120000,
   "gasoline",
@@ -176,18 +176,41 @@ let mitsu: {} = new Truck(
 catalog.push(mitsu);
 
 console.log(catalog);
-
-for (const vehicle of catalog) {
+//render function
+for (let vehicle of catalog) {
   let catalogAnchor = document.getElementById("car-list") as HTMLElement;
   catalogAnchor.innerHTML += `
   <div class="border border-danger border-2">
-        <div class="card m-2 p-2 w-100" style="width: 18rem;">
+        <div class="card my-2 mx-auto p-2 w-100" style="width: 18rem;">
         <img src="bike-1836962_640.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">${vehicle.brand} ${vehicle.model}</h5>
+                <p class="card-text">For more information on this vehicle, please click the button.</p>
+                <a href="#modal-container" class="btn btn-primary info-btn">More info</a>
             </div>
         </div>
   </div>`;
 }
+
+//add click events to buttons to open model
+let buttons = document.querySelectorAll(".info-btn") as NodeList;
+
+buttons.forEach((element, i) => {
+  element.addEventListener("click", () => {
+    const modalAnchor = document.getElementById(
+      "modal-container"
+    ) as HTMLElement;
+    modalAnchor.innerHTML = `
+    <div>
+      <div class="card">
+        <img src="bike-1836962_640.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${catalog[i].brand} ${catalog[i].model}</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="close-btn btn btn-primary">Close</a>
+        </div>
+      </div>
+  </div>`;
+  });
+  // const closeBtn = document.querySelector(".close-btn") as HTMLElement
+});
