@@ -51,7 +51,6 @@ catalog.push(mercedes);
 let mitsu = new Truck("Truck", 120000, "gasoline", 2022, 56000, "Mitsubishi", "Avenger", 8, 32, false);
 catalog.push(mitsu);
 console.log(catalog);
-//render function
 for (let vehicle of catalog) {
     let catalogAnchor = document.getElementById("car-list");
     catalogAnchor.innerHTML += `
@@ -82,6 +81,11 @@ buttons.forEach((element, i) => {
         </div>
       </div>
   </div>`;
+        //close button
+        const closeBtn = document.querySelector(".close-btn");
+        closeBtn.addEventListener("click", () => {
+            document.getElementById("modal-container").innerHTML =
+                "";
+        });
     });
-    // const closeBtn = document.querySelector(".close-btn") as HTMLElement
 });

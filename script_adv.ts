@@ -176,7 +176,7 @@ let mitsu = new Truck(
 catalog.push(mitsu);
 
 console.log(catalog);
-//render function
+
 for (let vehicle of catalog) {
   let catalogAnchor = document.getElementById("car-list") as HTMLElement;
   catalogAnchor.innerHTML += `
@@ -211,6 +211,13 @@ buttons.forEach((element, i) => {
         </div>
       </div>
   </div>`;
+
+    //close button
+    const closeBtn = document.querySelector(".close-btn") as HTMLElement;
+
+    closeBtn.addEventListener("click", () => {
+      (document.getElementById("modal-container") as HTMLElement).innerHTML =
+        "";
+    });
   });
-  // const closeBtn = document.querySelector(".close-btn") as HTMLElement
 });
