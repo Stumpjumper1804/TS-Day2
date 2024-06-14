@@ -87,7 +87,7 @@ class Truck extends Vehicle {
   }
 }
 
-let catalog: Array<{}> = [];
+let catalog: Array<Vehicle> = [];
 
 let kawasaki = new Motorbike(
   "Motorbike",
@@ -177,6 +177,12 @@ catalog.push(mitsu);
 
 console.log(catalog);
 
+//current object formatter
+const currencyFormater = new Intl.NumberFormat("de-AT", {
+  style: "currency",
+  currency: "EUR",
+});
+
 for (let vehicle of catalog) {
   let catalogAnchor = document.getElementById("car-list") as HTMLElement;
   catalogAnchor.innerHTML += `
@@ -206,8 +212,17 @@ buttons.forEach((element, i) => {
         <img src="bike-1836962_640.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">${catalog[i].brand} ${catalog[i].model}</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="close-btn btn btn-primary">Close</a>
+          <p class="card-text">${catalog[i].type} Data:</br>
+          Build: ${catalog[i].yearOfProd}, KM: ${catalog[i].km}, Hubraum: ${
+      catalog[i].ccm
+    } ccm, List price: <span class="fw-bold">${currencyFormater.format(
+      catalog[i].listPrice
+    )}</span></p>
+          <div class="d-flex justify-content-between">
+            <a href="#modal-container" class="close-btn btn btn-primary">Close</a>
+            <a href="#modal-container" class="price-btn btn btn-primary">Calculate price</a>
+            <div id="price-anchor" class="fw-bold text-danger fs-4"></div>
+          </div>
         </div>
       </div>
   </div>`;
@@ -218,6 +233,15 @@ buttons.forEach((element, i) => {
     closeBtn.addEventListener("click", () => {
       (document.getElementById("modal-container") as HTMLElement).innerHTML =
         "";
+    });
+
+    //price button
+    const priceBtn = document.querySelector(".price-btn") as HTMLElement;
+
+    priceBtn.addEventListener("click", () => {
+      (
+        document.getElementById("price-anchor") as HTMLElement
+      ).innerHTML = `${currencyFormater.format(catalog[i].calculatePrice())}`;
     });
   });
 });
