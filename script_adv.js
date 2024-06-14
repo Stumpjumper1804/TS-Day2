@@ -59,7 +59,7 @@ const currencyFormater = new Intl.NumberFormat("de-AT", {
 for (let vehicle of catalog) {
     let catalogAnchor = document.getElementById("car-list");
     catalogAnchor.innerHTML += `
-  <div class="border border-danger border-2">
+  <div class="">
         <div class="card my-2 mx-auto p-2 w-100" style="width: 18rem;">
         <img src="bike-1836962_640.jpg" class="card-img-top" alt="...">
             <div class="card-body">
@@ -96,11 +96,17 @@ buttons.forEach((element, i) => {
         closeBtn.addEventListener("click", () => {
             document.getElementById("modal-container").innerHTML =
                 "";
+            document.getElementById("car-list").classList.toggle("backdrop");
+            document.getElementById("modal-container").classList.remove("mod-modal-container");
         });
         //price button
         const priceBtn = document.querySelector(".price-btn");
         priceBtn.addEventListener("click", () => {
             document.getElementById("price-anchor").innerHTML = `${currencyFormater.format(catalog[i].calculatePrice())}`;
         });
+        //modal backdrop
+        document.getElementById("car-list").classList.add("backdrop");
+        //modal styling
+        document.getElementById("modal-container").classList.add("mod-modal-container");
     });
 });

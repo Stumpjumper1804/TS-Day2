@@ -34,7 +34,7 @@ class Vehicle {
     this.brand = brand;
     this.model = model;
   }
-  calculatePrice() {
+  calculatePrice(): number {
     let currYear: number = new Date().getFullYear();
     let price: number =
       this.listPrice - (currYear - this.yearOfProd) * 100 - this.km / 100;
@@ -87,7 +87,21 @@ class Truck extends Vehicle {
   }
 }
 
-let catalog: Array<Vehicle> = [];
+let catalog: Array<{
+  type: string;
+  km: number;
+  fuel: string;
+  yearOfProd: number;
+  listPrice: number;
+  brand: string;
+  model: string;
+  calculatePrice: any;
+  ABS?: boolean;
+  ccm?: number;
+  wheels?: number;
+  weight?: number;
+  turbo?: boolean;
+}> = [];
 
 let kawasaki = new Motorbike(
   "Motorbike",
@@ -186,7 +200,7 @@ const currencyFormater = new Intl.NumberFormat("de-AT", {
 for (let vehicle of catalog) {
   let catalogAnchor = document.getElementById("car-list") as HTMLElement;
   catalogAnchor.innerHTML += `
-  <div class="border border-danger border-2">
+  <div class="">
         <div class="card my-2 mx-auto p-2 w-100" style="width: 18rem;">
         <img src="bike-1836962_640.jpg" class="card-img-top" alt="...">
             <div class="card-body">
@@ -233,6 +247,12 @@ buttons.forEach((element, i) => {
     closeBtn.addEventListener("click", () => {
       (document.getElementById("modal-container") as HTMLElement).innerHTML =
         "";
+      (document.getElementById("car-list") as HTMLElement).classList.toggle(
+        "backdrop"
+      );
+      (
+        document.getElementById("modal-container") as HTMLElement
+      ).classList.remove("mod-modal-container");
     });
 
     //price button
@@ -243,5 +263,15 @@ buttons.forEach((element, i) => {
         document.getElementById("price-anchor") as HTMLElement
       ).innerHTML = `${currencyFormater.format(catalog[i].calculatePrice())}`;
     });
+
+    //modal backdrop
+    (document.getElementById("car-list") as HTMLElement).classList.add(
+      "backdrop"
+    );
+
+    //modal styling
+    (document.getElementById("modal-container") as HTMLElement).classList.add(
+      "mod-modal-container"
+    );
   });
 });

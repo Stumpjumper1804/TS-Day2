@@ -17,3 +17,18 @@
 .main-container {
   width: 75%;
 }
+
+#modal-container {
+  position: absolute;
+  top: 500px;
+  left: 39vw;
+}
+
+.mod-modal-container {
+  padding: 10px;
+  background-color: brown;
+}
+
+.backdrop {
+  opacity: 0.5;
+}
